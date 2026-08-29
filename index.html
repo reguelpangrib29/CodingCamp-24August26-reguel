@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Todo Life Dashboard — a personal productivity homepage with a live clock, Pomodoro timer, task list, and quick links." />
+  <title>Todo List Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <aside id="storage-warning" role="alert" aria-live="polite" aria-label="Storage warning">
+    ⚠ <span id="storage-warning-text"></span>
+    <button id="storage-warning-dismiss" type="button" aria-label="Dismiss warning">
+      ✕
+    </button>
+  </aside>
+
+  <section id="loading-indicator" aria-live="polite" aria-label="Loading dashboard">
+    <span>Loading…</span>
+  </section>
+
+  <main id="dashboard" class="dashboard" hidden>
+    <section class="dashboard__grid" aria-label="Personal productivity dashboard">
+
+      <header id="greeting-widget" class="widget widget--greeting" aria-label="Greeting">
+        <p id="greeting-salutation" class="greeting__salutation"></p>
+
+        <p id="greeting-time" class="greeting__time" aria-live="polite" aria-atomic="true"></p>
+
+        <p id="greeting-date" class="greeting__date"></p>
+      </header>
+
+      <section id="timer-widget" class="widget widget--timer" aria-labelledby="timer-title">
+        <h2 id="timer-title" class="widget__title">
+          Focus Timer
+        </h2>
+
+        <output id="timer-display" class="timer__display" aria-live="polite" aria-atomic="true"
+          aria-label="Remaining focus time">
+          25:00
+        </output>
+
+        <div class="timer__controls" role="group" aria-label="Timer controls">
+          <button id="timer-start" class="btn btn--primary" type="button">
+            Start
+          </button>
+
+          <button id="timer-stop" class="btn btn--secondary" type="button" disabled>
+            Stop
+          </button>
+
+          <button id="timer-reset" class="btn btn--secondary" type="button">
+            Reset
+          </button>
+        </div>
+      </section>
+
+      <section id="tasks-widget" class="widget widget--tasks" aria-labelledby="tasks-title">
+        <h2 id="tasks-title" class="widget__title">
+          Tasks
+        </h2>
+
+        <form id="task-add-form" class="task__add-form" novalidate>
+          <label for="task-input" class="sr-only">
+            New task description
+          </label>
+
+          <input id="task-input" class="input" type="text" placeholder="Add a task…" maxlength="500" autocomplete="off"
+            aria-describedby="task-input-error" />
+
+          <button id="task-add-btn" class="btn btn--primary" type="submit">
+            Add
+          </button>
+        </form>
+
+        <span id="task-input-error" class="validation-error" role="alert"></span>
+
+        <ul id="task-list" class="task__list" aria-label="Task items" aria-live="polite">
+        </ul>
+      </section>
+
+      <section id="quicklinks-widget" class="widget widget--quicklinks" aria-labelledby="quicklinks-title">
+        <h2 id="quicklinks-title" class="widget__title">
+          Quick Links
+        </h2>
+
+        <form id="quicklink-add-form" class="quicklinks__add-form" novalidate>
+          <div class="quicklinks__add-fields">
+            <label for="quicklink-label-input" class="sr-only">
+              Link label
+            </label>
+
+            <input id="quicklink-label-input" class="input" type="text" placeholder="Label" maxlength="100"
+              autocomplete="off" aria-describedby="quicklink-label-error" />
+
+            <label for="quicklink-url-input" class="sr-only">
+              Link URL
+            </label>
+
+            <input id="quicklink-url-input" class="input" type="text" placeholder="URL" maxlength="2048"
+              autocomplete="off" aria-describedby="quicklink-url-error" />
+
+            <button id="quicklink-add-btn" class="btn btn--primary" type="submit">
+              Add
+            </button>
+          </div>
+
+          <span id="quicklink-label-error" class="validation-error" role="alert"></span>
+
+          <span id="quicklink-url-error" class="validation-error" role="alert"></span>
+        </form>
+
+        <p id="quicklinks-cap-message" class="cap-message" role="status" hidden>
+          Maximum of 50 quick links reached. Delete a link to add a new one.
+        </p>
+
+        <nav id="quicklinks-list" class="quicklinks__list" aria-label="Quick link buttons">
+        </nav>
+      </section>
+
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+
+</html>
